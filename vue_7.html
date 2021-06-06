@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p>Epidemiology Problem. (Problem J2)<a href="https://cemc.uwaterloo.ca/contests/computing/2020/index.html">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+		<div class="formfield">
+			<label>Total number of people infected. <label> <input v-model="p">
+		</div>
+		<div class="formfield">
+			<label>New people infected per day. <label><input v-model="r">
+		</div>
+		<div id="result">
+			<span v-if="treat_total">The total amount of people infected will be reached in {{days}} days.</span>
+			<span v-else>The total amount of people infected will be reached in {{days}} days.</span>
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			p:0,
+			n:0,
+			r:1,
+			days:0
+		},
+		computed:{
+			treat_total:function(){
+				var i = 0;
+				while ( this.p > (this.r * i) ) {
+					i++;
+				}
+				this.days = i;
+				return i;
+
+			}
+		}
+	});
+	
+	</script>
+	<!--
+		v-model will allow you to quickly bind form elements to the data property.
+		Make sure to set a default value!
+		The Computed property can be used like data, except for values that are calculated from data properties.
+		In this example 'treat_total' is computed from data properties, and 'is_happy' is computed from 'treat_total'.
+		
+		ASYNCHRONOUS LEARNING EXERCISE : J1
+		- Find any J1 problem
+		- Imagine an interface that allows the user to enter data on the webpage
+		- Build using v-model and computed properties!
+	
+	-->
+	</body>
+</html>
